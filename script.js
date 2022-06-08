@@ -4,10 +4,10 @@
 const player0El = document.querySelector(".player--0");
 const player1El = document.querySelector(".player--1");
 
-const score0El = document.querySelector("#score--0");
-const score1El = document.querySelector("#score--1");
-const current0El = document.querySelector("#current--0");
-const current1El = document.querySelector("#current--1");
+let score0El = document.querySelector("#score--0");
+let score1El = document.querySelector("#score--1");
+let current0El = document.querySelector("#current--0");
+let current1El = document.querySelector("#current--1");
 
 const diceEl = document.querySelector(".dice");
 const btnNew = document.querySelector(".btn--new");
@@ -19,7 +19,7 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add("hidden");
 
-const scores = [0, 0];
+let scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 let playing = true;
@@ -80,4 +80,23 @@ btnHold.addEventListener("click", function () {
       switchPlayer();
     }
   }
+});
+
+btnNew.addEventListener("click", function () {
+  // 1) Reset the winner
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove("player--winner");
+  player0El.classList.add("player--active");
+  // 2) Reset the current score
+  // score0El = 0;
+  currentScore = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  // 3) Reset the score holding
+  scores = [0, 0];
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  // 4) Set the playing variable to true again
+  playing = true;
 });
